@@ -21,6 +21,9 @@ const BlogPostCard: React.FC<BlogPostCardProps> = ({
                     alt={post.banner_image?.name ?? ""}
                     width={348}
                     height={240}
+                    style={{
+                        objectPosition: post.banner_image?.alignment
+                    }}
                 />
 
                 <span className='absolute z-[1] leading-6 bottom-2 left-2 bg-offwhite font-fira font-medium text-xs px-4 py-1 rounded-[4px]'>

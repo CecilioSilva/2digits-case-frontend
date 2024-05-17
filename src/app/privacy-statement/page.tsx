@@ -1,5 +1,6 @@
 import Hero from '@/components/Hero/Hero';
 import { PreprSdk } from '@/server/prepr';
+import { sanitizeAndSerializeHTML } from '@/utils/sanitizeAndSerializeHTML';
 import { notFound } from 'next/navigation';
 import { Metadata } from 'next/types';
 import React from 'react'
@@ -30,10 +31,9 @@ const PrivacyPage = async () => {
 
                 <div
                     className='content font-fira space-y-4'
-                    dangerouslySetInnerHTML={{
-                        __html: Page.html
-                    }}
-                />
+                >
+                    {sanitizeAndSerializeHTML(Page.html)}
+                </div>
             </div>
         </main>
     )

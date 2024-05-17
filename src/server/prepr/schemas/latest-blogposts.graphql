@@ -32,20 +32,6 @@ query LatestBlogPosts {
           body
         }
       }
-      related_blogs {
-        related_blogs {
-          categories {
-            _id
-            body
-            slug
-          }
-          title
-          banner_image {
-            url
-            name
-          }
-        }
-      }
       title
       _id
       _slug

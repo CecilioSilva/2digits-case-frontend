@@ -1,47 +1,35 @@
-import { fetchBlogPosts } from '@/api/fetchBlogPosts';
 import React from 'react'
 import BlogPostCard from '../BlogPostCard/BlogPostCard';
-import { BlogPostResponse } from '@/types/BlogPost';
+import { PreprBlog, PreprBlogPostQuery_Blog_Blog_related_blogs_Blog } from '@/server/prepr/generated/preprAPI.schema';
 
 interface RelatedPostsListProps {
-    categoryId: number;
-    currentPostId: number;
+    props: PreprBlogPostQuery_Blog_Blog_related_blogs_Blog[]
 }
 
 const RelatedPostsList: React.FC<RelatedPostsListProps> = async ({
-    categoryId,
-    currentPostId,
+    props
 }) => {
-    const response = await fetch(
-        `${process.env.API_HOST}/posts?perPage=4&categoryId=${categoryId}`,
-        {
-            method: "GET",
-            headers: {
-                "Content-Type": "application/json",
-                token: process.env.API_KEY ?? "",
-            },
-            cache: "force-cache",
-        }
-    );
 
-    if (!response.ok) {
-        return <div>
-            Failed to fetch related posts
-        </div>
-    }
-
-    const posts: BlogPostResponse = await response.json();
-    const filteredPosts = posts.data.filter((post) => post.id !== currentPostId).slice(0, 3);
-
+    if (props.length === 0) {
+        return null;
+    };
 
     return (
-        <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 mx-auto'>
-            {filteredPosts.map((post) => {
-                return (
-                    <BlogPostCard key={post.id} post={post} />
-                )
-            })}
+        <div className=' bg-offwhite py-16'>
+            <div className="container space-y-4">
+                <h2 className=' font-barlow text-primary text-4xl'>
+                    Related blogs
+                </h2>
+                <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 mx-auto'>
+                    {props.slice(0, 3).map((post) => {
+                        return (
+                            <BlogPostCard key={post.title} post={post as PreprBlog} />
+                        )
+                    })}
+                </div>
+            </div>
         </div>
+
     )
 }
 

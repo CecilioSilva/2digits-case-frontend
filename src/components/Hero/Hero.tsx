@@ -22,7 +22,16 @@ const Hero: React.FC<HeroProps> = ({
             id="hero"
             className={cn('relative flex flex-col justify-center items-center', sectionClassName)}
         >
-            {image?.url && <Image src={image.url} alt={image.name ?? title ?? "Header image"} layout='fill' objectFit='cover' className='z-0' />}
+            {image?.url && <Image
+                src={image.url}
+                alt={image.name ?? title ?? "Header image"}
+                layout='fill'
+                objectFit='cover'
+                className='z-0'
+                style={{
+                    objectPosition: image?.alignment
+                }}
+            />}
 
             <div className={cn('container max-w-xl md:max-w-[823px] py-12 md:py-20 space-y-4 sm:space-y-8 text-center relative font-barlow text-light', className)}>
                 <h1 className='text-4xl sm:text-5xl md:text-7xl uppercase'>
