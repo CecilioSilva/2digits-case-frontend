@@ -1,0 +1,12 @@
+query Navigation($slug: String) {
+  Navigation(slug: $slug) {
+    title
+    items {
+      link_to_page {
+        _slug
+        title
+      }
+      title
+    }
+  }
+}
