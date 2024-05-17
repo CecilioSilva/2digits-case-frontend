@@ -3,7 +3,7 @@ import Link from 'next/link'
 import React from 'react'
 import NavItem from './NavItem'
 import MobileMenu from './MobileMenu'
-import { getNavigationRoutes } from '@/utils/getNavigationRoutes'
+import { getNavigationRoutes } from '@/services/getNavigationRoutes'
 
 
 

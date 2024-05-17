@@ -1,7 +1,0 @@
-query Example {
-  Page(slug: "/") {
-    page_header {
-      title
-    }
-  }
-}

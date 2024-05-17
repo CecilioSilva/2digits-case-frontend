@@ -1,0 +1,27 @@
+query Page($slug: String) {
+  Page(slug: $slug) {
+    html
+    page_header {
+      image {
+        _id
+        _type
+        name
+        description
+        author
+        original_name
+        width
+        height
+        mime_type
+        duration
+        url
+        cover
+        alignment
+        caption
+        playback_id
+      }
+      text
+      title
+    }
+    title
+  }
+}

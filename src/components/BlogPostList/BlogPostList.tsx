@@ -1,41 +1,30 @@
-"use client"
-import { fetchBlogPosts } from '@/api/fetchBlogPosts';
-import { useInfiniteQuery } from '@tanstack/react-query'
 import React from 'react'
 import BlogPostCard from '../BlogPostCard/BlogPostCard';
-import LoadMoreButton from './LoadMoreButton';
+import { PreprSdk } from '@/server/prepr';
+import type { PreprBlog } from '@/server/prepr/generated/preprAPI.schema';
 
-const BlogPostList = () => {
-    const { data, status, error, hasNextPage, fetchNextPage, fetchStatus } = useInfiniteQuery({
-        queryKey: ['blogPosts', { page: 1 }],
-        queryFn: ({ pageParam }) => fetchBlogPosts({ page: pageParam, perPage: 3 }),
-        initialPageParam: 1,
-        getNextPageParam: (lastPage) => {
-            return (lastPage.current_page < lastPage.last_page) ? lastPage.current_page + 1 : null;
-        }
-    });
+const BlogPostList = async () => {
+    const { Blogs } = await PreprSdk.LatestBlogPosts();
 
-    if (status === 'pending') return <div className='text-center'>Loading...</div>;
-
-    if (status === 'error') return <div className='text-center'>{error.message}</div>;
+    if (!Blogs || Blogs.items.length === 0) {
+        return (
+            <div className='flex flex-col justify-center items-center text-center min-h-80'>
+                <h4 className='text-xl sm:text-2xl text-primary'>
+                    No blog posts found
+                </h4>
+            </div>
+        )
+    }
 
     return (
         <div className='flex flex-col gap-8'>
             <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 mx-auto'>
-                {data.pages.map((page) => {
-                    return page.data.map((post) => {
-                        return (
-                            <BlogPostCard key={post.id} post={post} />
-                        )
-                    })
+                {Blogs.items.map((post) => {
+                    return (
+                        <BlogPostCard key={post._id} post={post as PreprBlog} />
+                    )
                 })}
             </div>
-            {
-                hasNextPage && <LoadMoreButton
-                    onClick={() => fetchNextPage()}
-                    active={fetchStatus === 'idle'}
-                />
-            }
         </div>
     )
 }

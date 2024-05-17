@@ -1,6 +1,6 @@
 import React from 'react'
 import FooterLink from './FooterLink'
-import { getNavigationRoutes } from '@/utils/getNavigationRoutes'
+import { getNavigationRoutes } from '@/services/getNavigationRoutes';
 
 
 const Footer = async () => {
