@@ -2,7 +2,6 @@ import BlogPostList from "@/components/BlogPostList/BlogPostList";
 import Hero from "@/components/Hero/Hero";
 import { PreprSdk } from "@/server/prepr";
 import { notFound } from "next/navigation";
-// import { PreprSdk } from '@/server/prepr';
 
 export default async function Home() {
   const { Page } = await PreprSdk.Page({
