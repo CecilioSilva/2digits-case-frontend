@@ -43,23 +43,27 @@ const ArchiveList: React.FC<ArchiveListProps> = ({
     const router = useRouter()
     const searchParams = useSearchParams()
 
-    const itemsPerPage = 2;
+    const itemsPerPage = 9;
 
+    // Get the selected category and page from the URL
     const selectedCategory = searchParams.get('category');
     const page = searchParams.get('page');
     const search = searchParams.get('search');
 
 
+    // Filter the blog posts based on the selected category and search query
     const filteredBlogPosts: PreprAllBlogPostsQuery_Blogs_Blogs['items'] = (blogPosts?.items ?? []).filter((blog) => {
         let includesSelectedCategory = false;
         let includesSearch = false;
 
+        // Check if the blog post includes the selected category if not add no category to url
         if (selectedCategory && selectedCategory !== 'null') {
             includesSelectedCategory = blog.categories.some((category) => category.slug === selectedCategory);
         } else {
             includesSelectedCategory = true;
         }
 
+        // Check if the blog post includes the search query if not add no search to url
         if (search && search !== 'null') {
             includesSearch = blog.title.toLowerCase().includes(search.toLowerCase());
         } else {
@@ -69,9 +73,10 @@ const ArchiveList: React.FC<ArchiveListProps> = ({
         return includesSelectedCategory && includesSearch;
     });
 
+
+    // Get the current items based on the page and items per page for pagination
     const lastItemIndex = parseInt(page || '1') * itemsPerPage;
     const firstItemIndex = lastItemIndex - itemsPerPage;
-
     const currentItems: PreprAllBlogPostsQuery_Blogs_Blogs['items'] = filteredBlogPosts.slice(
         firstItemIndex,
         lastItemIndex

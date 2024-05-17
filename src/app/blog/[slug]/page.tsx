@@ -1,4 +1,3 @@
-import Hero from '@/components/Hero/Hero';
 import { PreprSdk } from '@/server/prepr';
 import { cn } from '@/utils/cn';
 import { notFound } from 'next/navigation';

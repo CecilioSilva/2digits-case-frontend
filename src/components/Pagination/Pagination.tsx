@@ -1,3 +1,4 @@
+// Shad/cn Pagination component: https://ui.shadcn.com/docs/components/pagination
 import * as React from "react"
 import { ChevronLeft, ChevronRight, MoreHorizontal } from "lucide-react"
 

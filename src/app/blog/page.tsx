@@ -1,7 +1,6 @@
 import ArchiveList from '@/components/ArchiveList/ArchiveList';
 import Hero from '@/components/Hero/Hero';
 import { PreprSdk } from '@/server/prepr';
-import { Categorie } from '@/types/categorie';
 import { getAllBlogCategories } from '@/utils/getAllBlogCategories';
 import { notFound } from 'next/navigation';
 import { Metadata } from 'next/types';

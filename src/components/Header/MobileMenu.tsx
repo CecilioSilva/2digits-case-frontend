@@ -20,6 +20,8 @@ const MobileMenu: React.FC<MobileMenuProps> = ({
 
     useEffect(() => {
         // Prefetch all routes when the component is mounted to improve navigation speed
+        // Next Link does this automatically, but we need to do it manually for the mobile menu
+        // Because we are closing the menu when a link is clicked
         routes.map((route) => {
             router.prefetch(route.path)
         });

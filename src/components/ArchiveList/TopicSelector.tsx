@@ -1,6 +1,5 @@
 "use client"
-import { cn } from '@/utils/cn'
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import { TopicButton } from './TopicButton'
 import { Categorie } from '@/types/categorie'
 

@@ -21,6 +21,7 @@ const RelatedPostsList: React.FC<RelatedPostsListProps> = async ({
                     Related blogs
                 </h2>
                 <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 mx-auto'>
+                    {/* Only show a maximum of 3 */}
                     {props.slice(0, 3).map((post) => {
                         return (
                             <BlogPostCard key={post.title} post={post as PreprBlog} />
