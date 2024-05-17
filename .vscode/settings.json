@@ -16,5 +16,6 @@
   "editor.codeActionsOnSave": {
     "source.fixAll": "explicit"
   },
-  "cSpell.language": "en,nl"
+  "cSpell.language": "en,nl",
+  "cSpell.words": ["barlow", "fira"]
 }
