@@ -1,0 +1,39 @@
+query AllBlogPosts {
+  Blogs {
+    total
+    items {
+      categories {
+        body
+        slug
+      }
+      banner_image {
+        _id
+        _type
+        name
+        description
+        author
+        original_name
+        width
+        height
+        mime_type
+        duration
+        url
+        cover
+        alignment
+        caption
+        playback_id
+      }
+      title
+      content {
+        ... on Text {
+          _id
+          html
+          body
+          text
+          format
+        }
+      }
+      _slug
+    }
+  }
+}

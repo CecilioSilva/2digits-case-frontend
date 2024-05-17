@@ -10,11 +10,7 @@ const SearchBar: React.FC<SearchBarProps> = ({
     onChange
 }) => {
     const [searchValue, setSearchValue] = useState('');
-    const debounceValue = useDebounce(searchValue, 500);
 
-    useEffect(() => {
-        onChange(debounceValue);
-    }, [debounceValue, onChange])
 
     return (
         <div className='bg-offwhite'>

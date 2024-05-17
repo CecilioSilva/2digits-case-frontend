@@ -2,7 +2,7 @@ import React from 'react'
 
 interface PaginatedBlogPostListProps {
     page?: number
-    categoryId?: number | null
+    categoryId?: string | null
     searchValue?: string
 }
 

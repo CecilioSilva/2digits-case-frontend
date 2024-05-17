@@ -1,18 +1,21 @@
 "use client"
 import React, { useCallback, useEffect, useState } from 'react'
 import SearchBar from './SearchBar'
-import { BlogCategory } from '@/types/BlogPost'
 import TopicSelector from './TopicSelector'
 import PaginatedBlogPostList from './PaginatedBlogPostList'
 import { Pagination, PaginationContent, PaginationEllipsis, PaginationItem, PaginationLink, PaginationNext, PaginationPrevious } from '../Pagination/Pagination'
 import { usePathname, useRouter, useSearchParams } from 'next/navigation'
+import { PreprAllBlogPostsQuery_Blogs_Blogs } from '@/server/prepr/generated/preprAPI.schema'
+import { Categorie } from '@/types/categorie'
 
 interface ArchiveListProps {
-    categories: BlogCategory[]
+    categories: Categorie[]
+    blogPosts: PreprAllBlogPostsQuery_Blogs_Blogs | undefined
 }
 
 const ArchiveList: React.FC<ArchiveListProps> = ({
-    categories
+    categories,
+    blogPosts
 }) => {
     const router = useRouter()
     const pathname = usePathname()
@@ -27,8 +30,6 @@ const ArchiveList: React.FC<ArchiveListProps> = ({
         },
         [searchParams]
     )
-
-
 
     return (
         <div>
@@ -46,7 +47,7 @@ const ArchiveList: React.FC<ArchiveListProps> = ({
             </div>
             <PaginatedBlogPostList
                 page={parseInt(searchParams.get('page') || "1")}
-                categoryId={searchParams.get('category') ? parseInt(searchParams.get('category')!) : null}
+                categoryId={searchParams.get('category')}
                 searchValue={searchParams.get('search') || ""}
             />
             <Pagination>

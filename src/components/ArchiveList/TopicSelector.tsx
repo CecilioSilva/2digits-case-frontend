@@ -1,19 +1,19 @@
 "use client"
-import { BlogCategory } from '@/types/BlogPost'
 import { cn } from '@/utils/cn'
 import React, { useEffect, useState } from 'react'
 import { TopicButton } from './TopicButton'
+import { Categorie } from '@/types/categorie'
 
 interface TopicSelectorProps {
-    categories: BlogCategory[]
-    onChange: (value: number | null) => void
+    categories: Categorie[]
+    onChange: (value: string | null) => void
 }
 
 const TopicSelector: React.FC<TopicSelectorProps> = ({
     categories,
     onChange
 }) => {
-    const [selectedCategorie, setSelectedCategorie] = useState<number | null>(null);
+    const [selectedCategorie, setSelectedCategorie] = useState<string | null>(null);
 
     useEffect(() => {
         onChange(selectedCategorie)
@@ -34,11 +34,11 @@ const TopicSelector: React.FC<TopicSelectorProps> = ({
 
                 {categories.map((category) => (
                     <TopicButton
-                        name={category.name}
-                        value={category.id}
+                        name={category.title}
+                        value={category.slug}
                         onClick={setSelectedCategorie}
-                        selected={selectedCategorie === category.id}
-                        key={category.id}
+                        selected={selectedCategorie === category.slug}
+                        key={category.slug}
                     />
                 ))}
             </ul>
