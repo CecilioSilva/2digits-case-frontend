@@ -7,6 +7,7 @@ export default async function Home() {
   const { Page } = await PreprSdk.Page({
     slug: "/",
   });
+  const { Blogs } = await PreprSdk.LatestBlogPosts();
 
   if (!Page) return notFound();
 
@@ -21,7 +22,7 @@ export default async function Home() {
       <div className="container max-w-[1109px] py-20 space-y-8">
         <h2 className=" text-4xl sm:text-5xl text-primary text-center sm:text-start">The latest blogposts</h2>
 
-        <BlogPostList />
+        <BlogPostList blogPosts={Blogs?.items ?? []} />
       </div>
     </main>
   );

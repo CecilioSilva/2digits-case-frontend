@@ -1,22 +1,23 @@
 "use client"
-import useDebounce from '@/utils/useDebounce';
-import React, { useEffect, useState } from 'react'
+import { XIcon } from 'lucide-react'
+import React, { useState } from 'react'
 
 interface SearchBarProps {
-    onChange: (value: string) => void
+    onChange: (value: string | null) => void
+    value?: string | null
 }
 
 const SearchBar: React.FC<SearchBarProps> = ({
-    onChange
+    onChange,
+    value
 }) => {
-    const [searchValue, setSearchValue] = useState('');
-
+    const [searchValue, setSearchValue] = useState(value || '');
 
     return (
         <div className='bg-offwhite'>
             <div className='flex flex-col py-8 container gap-4'>
                 <h2 className='text-lg'>Search for blogs</h2>
-                <div className='flex gap-6'>
+                <div className='flex gap-3'>
                     <input
                         className='font-fira py-3 px-4 flex-1'
                         type="text"
@@ -24,12 +25,25 @@ const SearchBar: React.FC<SearchBarProps> = ({
                         value={searchValue}
                         onChange={(e) => setSearchValue(e.target.value)}
                     />
-                    <button
-                        className='py-3 px-8 font-fira text-white bg-[#371172] rounded-[3px]'
-                        onClick={() => onChange(searchValue)}
-                    >
-                        Search
-                    </button>
+                    <div className='flex gap-2'>
+                        {searchValue && (<button
+                            type='reset'
+                            className='py-3 px-3 font-fira text-white bg-[#371172] rounded-[3px]'
+                            onClick={() => {
+                                setSearchValue('');
+                                onChange(null);
+                            }}
+                        >
+                            <XIcon size={24} />
+                        </button>)}
+                        <button
+                            className='py-3 px-8 font-fira text-white bg-[#371172] rounded-[3px]'
+                            type='button'
+                            onClick={() => onChange(searchValue)}
+                        >
+                            Search
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>

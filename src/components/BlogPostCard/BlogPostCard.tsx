@@ -13,10 +13,10 @@ const BlogPostCard: React.FC<BlogPostCardProps> = ({
     post
 }) => {
     return (
-        <article key={post._id} className='space-y-6 h-full max-w-[348px] mt-4'>
-            <div className='bg-offwhite max-h-[240px] max-w-[348px] aspect-[29/20]  rounded-md relative overflow-hidden'>
+        <article key={post._id} className='space-y-6 h-full w-full mt-4'>
+            <div className='bg-offwhite  aspect-[29/20]  rounded-md relative overflow-hidden'>
                 <Image
-                    className='object-cover absolute inset-0 h-[240px] w-[348px] z-0'
+                    className='object-cover absolute inset-0 w-full h-full z-0'
                     src={post.banner_image?.url ?? ""}
                     alt={post.banner_image?.name ?? ""}
                     width={348}

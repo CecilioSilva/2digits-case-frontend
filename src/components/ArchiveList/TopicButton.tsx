@@ -18,7 +18,7 @@ export const TopicButton: React.FC<TopicButtonProps> = ({
         <li>
             <button
                 onClick={() => onClick(value)}
-                className={cn(`font-fira border-2 font-medium uppercase px-4 py-2 rounded`, {
+                className={cn(`font-fira border-2 font-medium uppercase px-4 py-2 rounded whitespace-nowrap`, {
                     'bg-[#371172] border-transparent text-white': selected,
                     'border-offwhite bg-white text-black': !selected
                 })}>
