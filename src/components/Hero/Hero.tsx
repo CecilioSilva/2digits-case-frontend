@@ -23,9 +23,8 @@ const Hero: React.FC<HeroProps> = ({ header, className, sectionClassName }) => {
         <Image
           src={image.url}
           alt={image.name ?? title ?? 'Header image'}
-          layout="fill"
-          objectFit="cover"
-          className="z-0"
+          fill
+          className="z-0 object-cover"
           style={{
             objectPosition: image?.alignment,
           }}

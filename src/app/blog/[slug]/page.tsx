@@ -39,9 +39,8 @@ const BlogPage: React.FC<BlogPageProps> = async ({ params }) => {
           <Image
             src={Blog.banner_image.url}
             alt={Blog.banner_image.name || 'Banner Image'}
-            layout="fill"
-            objectFit="cover"
-            className="z-0"
+            fill
+            className="z-0 object-cover"
             style={{
               objectPosition: Blog.banner_image?.alignment,
             }}
