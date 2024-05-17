@@ -1,18 +1,21 @@
-import React from 'react'
-import FooterLink from './FooterLink'
+import React from 'react';
+
 import { getNavigationRoutes } from '@/services/getNavigationRoutes';
 
+import FooterLink from './FooterLink';
 
 const Footer = async () => {
-    const routes = await getNavigationRoutes("footer");
+  const routes = await getNavigationRoutes('footer');
 
-    return (
-        <footer className='bg-headerGradient'>
-            <ul className='container text-lg flex items-center justify-center sm:justify-start gap-9 sm:gap-[46px] py-8'>
-                {routes.map((route) => (<FooterLink key={route.path} {...route} />))}
-            </ul>
-        </footer>
-    )
-}
+  return (
+    <footer className="bg-headerGradient">
+      <ul className="container flex items-center justify-center gap-9 py-8 text-lg sm:justify-start sm:gap-[46px]">
+        {routes.map((route) => (
+          <FooterLink key={route.path} {...route} />
+        ))}
+      </ul>
+    </footer>
+  );
+};
 
-export default Footer
+export default Footer;

@@ -1,22 +1,18 @@
-import Link from 'next/link'
-import React from 'react'
+import React from 'react';
+
+import Link from 'next/link';
 
 interface FooterLinkProps {
-    name: string
-    path: string
+  name: string;
+  path: string;
 }
 
-const FooterLink: React.FC<FooterLinkProps> = ({
-    name,
-    path
-}) => {
-    return (
-        <li className='hover:underline text-light font-fira font-normal text-xs'>
-            <Link href={path} >
-                {name}
-            </Link>
-        </li>
-    )
-}
+const FooterLink: React.FC<FooterLinkProps> = ({ name, path }) => {
+  return (
+    <li className="font-fira text-xs font-normal text-light hover:underline">
+      <Link href={path}>{name}</Link>
+    </li>
+  );
+};
 
-export default FooterLink
+export default FooterLink;

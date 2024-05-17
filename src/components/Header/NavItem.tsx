@@ -1,22 +1,18 @@
-import Link from 'next/link'
-import React from 'react'
+import React from 'react';
+
+import Link from 'next/link';
 
 interface NavItemProps {
-    name: string
-    path: string
+  name: string;
+  path: string;
 }
 
-const NavItem: React.FC<NavItemProps> = ({
-    name,
-    path
-}) => {
-    return (
-        <li className='hover:underline text-light'>
-            <Link href={path} >
-                {name}
-            </Link>
-        </li>
-    )
-}
+const NavItem: React.FC<NavItemProps> = ({ name, path }) => {
+  return (
+    <li className="text-light hover:underline">
+      <Link href={path}>{name}</Link>
+    </li>
+  );
+};
 
-export default NavItem
+export default NavItem;
