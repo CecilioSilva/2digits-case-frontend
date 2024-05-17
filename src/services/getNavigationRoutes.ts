@@ -8,10 +8,14 @@ export const getNavigationRoutes = async (slug: 'header' | 'footer'): Promise<Ro
 
   if (!Navigation) return [];
 
-  const routes: Route[] = Navigation.items.map((item) => ({
-    name: item.title,
-    path: item.link_to_page[0]?._slug || '/',
-  }));
+  const routes: Route[] = Navigation.items.map((item) => {
+    const slug = item.link_to_page[0]?._slug || '/';
+
+    return {
+      name: item.title,
+      path: slug?.startsWith('/') ? slug : `/${slug}`,
+    };
+  });
 
   return routes;
 };

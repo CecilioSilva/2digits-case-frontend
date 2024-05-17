@@ -40,7 +40,7 @@ const BlogPostCard: React.FC<BlogPostCardProps> = ({
                     {(post.content?.[0] as PreprText).text?.slice(0, 150) ?? ""}
                 </p>
 
-                <Link href={`/blogs/${post._slug ?? ""}`} className='flex gap-4 items-center w-min'>
+                <Link href={`/blog/${post._slug ?? ""}`} className='flex gap-4 items-center w-min'>
                     <span className=' font-fira text-[15px] font-medium whitespace-nowrap leading-6'>Read more</span>
 
                     <ArrowRight size={15} />

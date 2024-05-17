@@ -34,7 +34,7 @@ const BlogPage: React.FC<BlogPageProps> = async ({
         <main className='flex-1'>
             <section
                 id="hero"
-                className={cn('relative flex flex-col justify-center items-center min-h-[300px] md:min-h-[500px]')}
+                className={cn('relative flex flex-col justify-center items-center min-h-[252px] md:h-[300px] lg:h-[452px] brightness-75')}
             >
                 {Blog.banner_image.url && (<Image
                     src={Blog.banner_image.url}
