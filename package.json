@@ -62,7 +62,11 @@
     "extends": "@2digits",
     "ignorePatterns": [
       "src/server/*/generated/**"
-    ]
+    ],
+    "parserOptions": {
+      "EXPERIMENTAL_useProjectService": false,
+      "project": "./tsconfig.json"
+    }
   },
   "prettier": "@2digits/prettier-config"
 }

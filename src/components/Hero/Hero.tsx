@@ -26,7 +26,7 @@ const Hero: React.FC<HeroProps> = ({ header, className, sectionClassName }) => {
           fill
           className="z-0 object-cover"
           style={{
-            objectPosition: image?.alignment,
+            objectPosition: image.alignment,
           }}
         />
       )}

@@ -4,8 +4,8 @@ import React from 'react';
 
 import { useRouter, useSearchParams } from 'next/navigation';
 
-import { PreprAllBlogPostsQuery_Blogs_Blogs } from '@/server/prepr/generated/preprAPI.schema';
-import { Categorie } from '@/types/categorie';
+import type { PreprAllBlogPostsQuery_Blogs_Blogs } from '@/server/prepr/generated/preprAPI.schema';
+import type { Categorie } from '@/types/categorie';
 
 import BlogPostList from '../BlogPostList/BlogPostList';
 import PaginationComponent from '../Pagination/PaginationComponent';
@@ -17,14 +17,18 @@ interface ArchiveListProps {
   blogPosts: PreprAllBlogPostsQuery_Blogs_Blogs | undefined;
 }
 
-const getQueryParams = (search: string | null, page: number | null, category: string | null) => {
+const getQueryParams = (
+  search: string | null | undefined,
+  page: number | null | undefined,
+  category: string | null | undefined,
+) => {
   const params = new URLSearchParams();
 
   if (search && search !== '' && search !== 'null') {
     params.set('search', search);
   }
 
-  if (page && page > 1 && page !== null) {
+  if (page && page > 1) {
     params.set('page', page.toString());
   }
 
@@ -63,17 +67,14 @@ const ArchiveList: React.FC<ArchiveListProps> = ({ categories, blogPosts }) => {
     }
 
     // Check if the blog post includes the search query if not add no search to url
-    if (search && search !== 'null') {
-      includesSearch = blog.title.toLowerCase().includes(search.toLowerCase());
-    } else {
-      includesSearch = true;
-    }
+    includesSearch =
+      search && search !== 'null' ? blog.title.toLowerCase().includes(search.toLowerCase()) : true;
 
     return includesSelectedCategory && includesSearch;
   });
 
   // Get the current items based on the page and items per page for pagination
-  const lastItemIndex = parseInt(page || '1') * itemsPerPage;
+  const lastItemIndex = Number.parseInt(page || '1') * itemsPerPage;
   const firstItemIndex = lastItemIndex - itemsPerPage;
   const currentItems: PreprAllBlogPostsQuery_Blogs_Blogs['items'] = filteredBlogPosts.slice(
     firstItemIndex,
@@ -86,8 +87,9 @@ const ArchiveList: React.FC<ArchiveListProps> = ({ categories, blogPosts }) => {
         onChange={(value) => {
           router.push(`?${getQueryParams(value, 1, selectedCategory)}`, { scroll: false });
         }}
-        value={search || null}
+        value={search || undefined}
       />
+
       <div className="container pb-20 pt-8">
         <TopicSelector
           categories={categories}
@@ -97,7 +99,7 @@ const ArchiveList: React.FC<ArchiveListProps> = ({ categories, blogPosts }) => {
           }}
         />
 
-        {!currentItems || currentItems.length === 0 ? (
+        {currentItems.length === 0 ? (
           <div className="flex min-h-80 flex-col items-center justify-center text-center">
             <h4 className="text-xl text-primary sm:text-2xl">No blog posts found</h4>
           </div>
@@ -109,7 +111,7 @@ const ArchiveList: React.FC<ArchiveListProps> = ({ categories, blogPosts }) => {
       <PaginationComponent
         totalItems={filteredBlogPosts.length || 0}
         itemsPerPage={itemsPerPage}
-        currentPage={parseInt(page || '1')}
+        currentPage={Number.parseInt(page || '1')}
         setCurrentPage={(page) => {
           router.push(`?${getQueryParams(search, page, selectedCategory)}`, { scroll: false });
         }}

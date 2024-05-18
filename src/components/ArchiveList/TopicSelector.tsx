@@ -2,13 +2,13 @@
 
 import React from 'react';
 
-import { Categorie } from '@/types/categorie';
+import type { Categorie } from '@/types/categorie';
 
 import { TopicButton } from './TopicButton';
 
 interface TopicSelectorProps {
   categories: Categorie[];
-  onChange: (value: string | null) => void;
+  onChange: (value: string | null | undefined) => void;
   value: string | null;
 }
 
@@ -16,8 +16,9 @@ const TopicSelector: React.FC<TopicSelectorProps> = ({ categories, onChange, val
   return (
     <div className="space-y-4 pb-8">
       <h3 className="text-lg leading-6 text-primary">Topics</h3>
+
       <ul className="flex flex-wrap gap-2 uppercase">
-        <TopicButton name="All blogs" value={null} onClick={onChange} selected={value === null} />
+        <TopicButton name="All blogs" value={undefined} onClick={onChange} selected={!value} />
 
         {categories.map((category) => (
           <TopicButton

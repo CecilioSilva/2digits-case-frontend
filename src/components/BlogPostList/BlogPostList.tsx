@@ -15,7 +15,7 @@ interface BlogPostListProps {
 }
 
 const BlogPostList: React.FC<BlogPostListProps> = ({ blogPosts }) => {
-  if (!blogPosts || blogPosts.length === 0) {
+  if (blogPosts.length === 0) {
     return (
       <div className="flex min-h-80 flex-col items-center justify-center text-center">
         <h4 className="text-xl text-primary sm:text-2xl">No blog posts found</h4>

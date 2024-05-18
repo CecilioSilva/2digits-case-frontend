@@ -25,7 +25,7 @@ const PaginationComponent: React.FC<PaginationComponentProps> = ({
   currentPage,
   setCurrentPage,
 }) => {
-  let pages = [];
+  const pages: number[] = [];
 
   for (let i = 1; i <= Math.ceil(totalItems / itemsPerPage); i++) {
     pages.push(i);
@@ -68,14 +68,14 @@ const PaginationComponent: React.FC<PaginationComponentProps> = ({
         {pages.length > 3 && (
           <PaginationItem>
             <PaginationLink
-              onClick={() => setCurrentPage(pages[pages.length - 1] ?? 1)}
+              onClick={() => setCurrentPage(pages.at(-1) ?? 1)}
               className={cn(
                 'cursor-pointer rounded border-2 hover:brightness-90',
-                currentPage === pages[pages.length - 1]
+                currentPage === pages.at(-1)
                   ? 'border border-transparent bg-[#371172] text-white'
                   : 'border-offwhite hover:bg-offwhite/10',
               )}>
-              {pages[pages.length - 1]}
+              {pages.at(-1)}
             </PaginationLink>
           </PaginationItem>
         )}

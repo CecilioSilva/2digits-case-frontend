@@ -5,7 +5,7 @@ import { notFound } from 'next/navigation';
 
 import RelatedPostsList from '@/components/RelatedPostsList/RelatedPostsList';
 import { PreprSdk } from '@/server/prepr';
-import { PreprText } from '@/server/prepr/generated/preprAPI.schema';
+import type { PreprText } from '@/server/prepr/generated/preprAPI.schema';
 import { cn } from '@/utils/cn';
 import { sanitizeAndSerializeHTML } from '@/utils/sanitizeAndSerializeHTML';
 
@@ -42,11 +42,12 @@ const BlogPage: React.FC<BlogPageProps> = async ({ params }) => {
             fill
             className="z-0 object-cover"
             style={{
-              objectPosition: Blog.banner_image?.alignment,
+              objectPosition: Blog.banner_image.alignment,
             }}
           />
         )}
       </section>
+
       <div className="container">
         <article className="mx-auto max-w-[823px] space-y-8 py-16">
           <div className="space-y-2">
@@ -59,13 +60,16 @@ const BlogPage: React.FC<BlogPageProps> = async ({ params }) => {
                 </span>
               ))}
             </div>
+
             <h1 className="text-3xl text-primary lg:text-5xl">{Blog.title}</h1>
           </div>
+
           <div className="prose max-w-[823px] font-fira prose-headings:font-barlow prose-headings:text-primary">
             {sanitizeAndSerializeHTML(content)}
           </div>
         </article>
       </div>
+
       <RelatedPostsList props={Blog.related_blogs} />
     </main>
   );

@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { notFound } from 'next/navigation';
-import { Metadata } from 'next/types';
+import type { Metadata } from 'next/types';
 
 import Hero from '@/components/Hero/Hero';
 import { PreprSdk } from '@/server/prepr';
@@ -29,7 +29,7 @@ const TermsPage = async () => {
           {Page.title}
         </h2>
 
-        <div className="content space-y-4 font-fira">{sanitizeAndSerializeHTML(Page.html)}</div>
+        <div className="space-y-4 font-fira">{sanitizeAndSerializeHTML(Page.html)}</div>
       </div>
     </main>
   );

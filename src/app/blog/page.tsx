@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { notFound } from 'next/navigation';
-import { Metadata } from 'next/types';
+import type { Metadata } from 'next/types';
 
 import ArchiveList from '@/components/ArchiveList/ArchiveList';
 import Hero from '@/components/Hero/Hero';
@@ -28,6 +28,7 @@ const BlogArchive = async () => {
   return (
     <main className="flex-1">
       <Hero header={Page.page_header} sectionClassName="h-[300px]" />
+
       <ArchiveList blogPosts={Blogs} categories={categories} />
     </main>
   );

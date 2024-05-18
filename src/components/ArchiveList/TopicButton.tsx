@@ -4,8 +4,8 @@ import { cn } from '@/utils/cn';
 
 interface TopicButtonProps {
   name: string;
-  value: string | null;
-  onClick: (value: string | null) => void;
+  value: string | null | undefined;
+  onClick: (value: string | null | undefined) => void;
   selected: boolean;
 }
 
