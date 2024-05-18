@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 
 import { notFound } from 'next/navigation';
 import type { Metadata } from 'next/types';
@@ -29,7 +29,9 @@ const BlogArchive = async () => {
     <main className="flex-1">
       <Hero header={Page.page_header} sectionClassName="h-[300px]" />
 
-      <ArchiveList blogPosts={Blogs} categories={categories} />
+      <Suspense>
+        <ArchiveList blogPosts={Blogs} categories={categories} />
+      </Suspense>
     </main>
   );
 };
